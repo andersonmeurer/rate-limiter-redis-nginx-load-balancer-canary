@@ -30,6 +30,12 @@ This project implements a distributed rate limiting system for REST APIs using S
 - To change the traffic split, edit the `nginx.conf` file and adjust the `upstream` weights.
 - You can deploy a new version to the canary instance by changing its build context, environment variables, or code, then rebuilding and restarting only the canary service.
 
+### Known limitation
+
+Negative point: It is not possible to dynamically adjust the traffic percentage between `container-app-stable` and `container-app-canary` without restarting or reloading services. Changing the weights requires editing `nginx.conf` and restarting NGINX or the containers, which causes downtime and prevents a gradual canary rollout without impacting production.
+
+Alternative (short for release notes): Cannot change traffic split between `container-app-stable` and `container-app-canary` on the fly; updating `nginx.conf` requires a restart and causes downtime.
+
 ## Project Structure
 
 - `src/main/java/com/meurer/rate/limiter/redis/nginx/canary/`: Main application code.
