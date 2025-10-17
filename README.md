@@ -89,6 +89,10 @@ You can configure the application using environment variables or by editing `src
    mvn test
    ```
 
+## Running on Docker
+
+![Application running on Docker server](docs/running-docker.png)
+
 ## Application in Execution
 
 The image below demonstrates the application running with two containers: **app-stable** and **app-canary**. The log entries show which container processed each request:
