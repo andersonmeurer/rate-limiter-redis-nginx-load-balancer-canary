@@ -66,6 +66,8 @@ You can configure the application using environment variables or by editing `src
    ```
    Output: `target/canary-0.0.1-SNAPSHOT.jar`
 
+   > **Note:** If you encounter issues building the JAR due to test failures, temporarily comment out or disable the tests in `src/test/java` before running `mvn clean package`.
+
 2. **Start the stack with Docker Compose**
 
    ```sh
@@ -86,6 +88,17 @@ You can configure the application using environment variables or by editing `src
    ```sh
    mvn test
    ```
+
+## Application in Execution
+
+The image below demonstrates the application running with two containers: **app-stable** and **app-canary**. The log entries show which container processed each request:
+
+- `container-app-stable: ... Request processed successfully counter:` — processed by the stable version.
+- `container-app-canary: ... Request processed successfully counter:` — processed by the canary version.
+
+You can observe that approximately **95%** of requests are routed to the stable version and **5%** to the canary version, illustrating the canary deployment and load balancing.
+
+![Application running example](docs/running.png)
 
 ## Useful Commands
 
